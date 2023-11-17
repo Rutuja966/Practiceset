@@ -1,0 +1,297 @@
+15 Sep 2023
+===================================================================================
+Assume that we have A named Submit button , A named text field ,B named text field 
+input[type='submit']----- A button
+input [value='B']--------- B text field 
+Syntax :
+       //input[not(@type='text')]--- A button 
+       //input[not(@value='A')]---  B text Field  
+       //input[not(@type='submit') and @value='A']--- A text Field 
+       //input[not(@value='B')]
+        
+
+Automate letcode.in 
+1 launch url -letcode.in 
+2 click on toggle 
+3 select any one - click on yes 
+4 confirm you can select - click on yes only one radio button 
+5 find the bug click on no 
+6 find which one is selected - click on foo 
+7 confirm last field is disable - click on going 
+8 find checkbox is selected - click on remember me 
+9 accept T&C - click in I agree 
+
+----------------------------------------------------------------------------------
+
+
+
+16 Sep 2023
+=============================================================================================
+Independent and Dependent Xpath 
+1 Independent Xpath- When web element having completly dynamic value then we use independent Xpath
+   steps t write 
+        1  Identify which is fixed and dynamic elements 
+        2  write the Xpath for fixed element 
+        3  update the xpath by bckword travesing (/..) to find common parent between fixed element and dyanamic element 
+        4 update the xpath by writting xpath for dyanamic element 
+        5  https://www.irctc.com/contact.html 
+        6  follow the above steps 
+
+  //p[text()='Java']/..//a[@href='https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.12.0/selenium-java-4.12.1.zip'] ------------- selenium 
+For flipkart 
+1) FE : (//div[text()='vivo T2x 5G (Marine Blue, 128 GB)'])[1]
+2) common parent of DE and FE : (//div[text()='vivo T2x 5G (Marine Blue, 128 GB)'])[1]/../..
+
+
+vivo T2x 5G (Glimmer Black, 128 GB)--- FE
+₹13,999 ----DE
+=========================================================
+20 Sep 2023
+
+WebElement :An interface Any elements which is present in view or visisble port area of webpage 
+why we use?
+To perform actios on webpages 
+1. click()--- Used for clicking and scrolling operation
+              ElementClickInterceptedException present in click method 
+2. clear()--- Used for to clear the data 
+3. sendKeys()
+4. gettext()
+5. getAttribute()
+6. getcssvalue()
+7. isEnable()------------- if the element is enabled we can perform an action on webelement// webelement is not having tagname as <input> or <button> the default value is true.
+8. isSelected()-----------the webelement should be either checkbox or radio buttton default value is false.
+9. isDisplayed()---------- return type is boolean .It  is used to find web element displayed on web page or not .
+10. getSize()
+11. getlocation()
+12. getRect()
+13. gettagname()
+14. Submit()
+================================================================
+
+output of skillraly.com --> Sign Up Automated 
+
+Thank you for Registering.
+Your Account:
+
+Email: rutujaambavale143@gmail.com
+
+Password: Rutuja@123
+
+Please click the link below to activate your account.
+
+Activate Account
+
+Source Code :-
+
+package Webelement1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Signup 
+{
+
+	public static void main(String[] args) 
+	{
+		ChromeDriver d = new ChromeDriver();
+		d.get("https://demoapp.skillrary.com/");
+        d.findElement(By.linkText("SIGNUP")).click();
+		d.findElement(By.xpath("//input[@name='firstname']")).sendKeys("Rutuja");
+		d.findElement(By.xpath("(//input[@name='email'])[2]")).sendKeys("rutujaambavale143@gmail.com");
+		d.findElement(By.xpath("//input[@name='lastname']")).sendKeys("Ambavale");
+		d.findElement(By.xpath("(//input[@type='password'])[3]")).sendKeys("Rutuja@123");
+		d.findElement(By.xpath("(//input[@type='password'])[2]")).sendKeys("Rutuja@123");
+		d.findElement(By.xpath("//input[@class='btnRegister']")).click();
+
+
+
+
+	}
+
+}
+
+
+synchronisation :
+
+    waits : to decrease the speed of automation script
+             1.Thread.sleep(//milisec)
+             2. implicit 
+              3.explicit
+             4.fluent 
+              5.
+
+========================================
+TakesScreenshots :
+       It is an interface used to take screenshots of webpage as well as webelemnet
+       It has one method 
+          getScreenshotAs() 
+       why we use? ==> to add the ss to defect report ,to analysis of test script failure 
+       tools : itestlistener ==> automatically take ss where it fails 
+  OOAD = Object oriented analysis and design principal 
+
+
+How to take ss of webpage ?
+step 1:
+      Downcasting 
+step 2:
+    getScreenshotAs----|  1 files
+                          2  base64
+                          3  byte 
+
+
+=======================================
+5 oct 2023 
+
+for wbpage ss we have to do downcasting
+for web element no need to downcast
+1. identify web element 
+
+Explicit wait :
+1.findElement And findElements should not have to there in program
+2.conditions and predicates 
+3. timeoutexception
+
+Select class method 
+1 getoptions()--- returns List<WebElement>
+2 ismultiple()---returns 
+3 SelectByIndex()-- starting from 0
+3 SelectByvi
+
+
+
+=======================================
+popups :
+ It is GUI window which comes on top of the another window 
+1. javascript popup --- blocker popup which stops the functionality of applications , design by using javascript language .
+    a.alert =
+    will have only one button 
+
+    b.confirmation=
+    wll have two buttons ok and cancel 
+   =: syntax : 1]driver.switchTo().alert().accept()-- for click on ok
+                2]driver.switchTo().alert().dismiss()-- for click on cancel
+                3]driver.switchTo().alert().gettext()-- read text on popup
+                 4]driver.switchTo().alert().sendKeys()-- to input for text box
+
+    c.prompt
+    will have text field , ok and cancel
+    -:are not inspectable will go for next step.
+    -:will have only one button 
+
+2. hidden division popup --- only one which is inspectable 
+3.file uploading popup -- autoit tool used here == to automate standalone application
+4.notification popup ----------handle==handles by using Robotclass from java package and avoid==Avoid by using Browseroptionclass from selenium pacakge 
+5. authentication popup
+
+
+steps
+1. check popup is inspectable or not 
+   if it is inspectable then handle it by using findElement .
+2. if it is not inspectable then you have to check any other soln. are there in selenium webdriver to handle popup 
+3. check any other soln are there in programming language to handle the popup
+4. check any other third party tools are there to handle the popup
+5. try to avoid the popup== use Browseroptionclass 
+
+
+
+
+
+
+
+
+
+LIC-- Pay primium online ---click ok--- go to engish --- select hindi 
+
+Autoit tools syntax
+ControlFocus ( "title", "text", controlID )-- to take control of mouse to the text field 
+ControlSetText ( "title", "text", controlID, "new text" )--- to endt
+ControlClick ( "title", "text", controlID )
+
+How to write POM
+step 1: have to create seperate java class for all the webpage
+step 2:all the webelements should be passed in the respective clas.
+step 3:use annotation @FindBy() to avoid StayElement
+step 4:call getter and make element as private
+step5 :call class called PageFactory.initElement() from selenium pakage 
+
+Findelements 
+1.inspect one of the elements 
+2. move in backward direction until we get common parent for all elements
+3.find common between all elements 
+4. find diff btw expectd element and xpath element
+
+//li[@role='presentation' and not(@id='YMXe') and not(@id='mitGyb')]===10
+
+
+
+
+Data Driven Testing == Excel Sheet
+Excel ==> work books ==>sheets ==>rows ==>cells
+
+FileInputStream class==>From java ==> used to open in input mode 
+Workbook class ==> used to read the data from workbook 
+Sheet class==> intereact with sheets 
+Row class==
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================================================================================================
+=================================================================================================================================
+ADVANCE SELENIUM 
+Framework :- It is a collection of reusable components which makes automation testscripts development,maintainance and modification
+
+
+
+types:
+1 DDT framework [Data Driven Testing ] :-
+  when we want to fetch n number of data will go for DDT e.g E-commerce 
+    1.Excel sheet
+    2.property file 
+2 TDD framework [TestNG framework] Test Driven Development 
+3 BDD framework developed with girkin language [Behavioural Data Driven ] also called as cucumber framework
+   having keywords 
+     1 feature file'
+     2 step defination file (keywords should use like when ,then etc) 
+
+4  Hybrid framework : DDT + TDD
+5 Modular framework : diving application into n number of modules 
+6 keyword framework : design framework with the help of set of keywords 
+
+
+Common utils 
+Utils means a place 
+compilsory utils are : 1 base class
+                       2 java utils 
+                       3 WebDriver utils --- to store we src/main/java
+
+                       src/test/java-- to write test scripts 
+                        src/test/resource--external file 
+
+ dependancy
+
+Asserts/Assertion /chechpoint 
+fail the test script of testng class
+
+Hardassert :
+   have 3 mothods 
+   assertEquals()
+   asserttrue():what condition you pass it will give o/p according 
+   assertfalse()
+
+
+
+
+
+
+
+
+
